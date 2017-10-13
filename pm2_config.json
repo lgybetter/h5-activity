@@ -1,0 +1,12 @@
+{
+  "apps" : [
+    {
+      "name"        : "meilai",
+      "script"      : "index.js",
+      "instances"   : 1,
+      "watch"       : false,
+      "exec_interpreter" : "babel-node",
+      "exec_mode"        : "fork"
+    }
+  ]
+}
