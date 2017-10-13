@@ -5,11 +5,12 @@ class RouterIndex {
     this._router = express.Router();
     this._authRouter = express.Router();
     this._commonRouter = express.Router();
+    this._wechatRotuer = express.Router();
     /**
      * 路由编写
      */
     this._authRouter.use(vertifyToken);
-    require('./qiniu-oss')(this._router, this._commonRouter, this._authRouter);
+    require('./qiniu-oss')(this._router, this._commonRouter, this._authRouter, this._wechatRotuer);
   }
 
   /**
@@ -29,6 +30,12 @@ class RouterIndex {
    */
   commonRouter () {
     return this._commonRouter;
+  }
+  /**
+   * 微信路由
+   */
+  wechatRotuer() {
+    return this._wechatRotuer;
   }
 }
 
