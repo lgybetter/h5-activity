@@ -4,11 +4,10 @@ const exchangeToken = async (req, res, next) => {
   const code = req.body.code
   try {
     const body = await getToken(code)
-    console.log(body)
-    res.json({
-      code: 200,
-      data: body
-    })
+    const token = body.access_token
+    const openid = body.openid
+    const userInfo = await getUserInfo(token, openid)
+    console.log(userInfo)
   } catch (error) {
     console.log(error.message)
     res.json({
