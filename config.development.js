@@ -12,8 +12,8 @@ export default {
   },
   wechat: {
     baseUrl: 'https://api.weixin.qq.com',
-    appId: 'wx8bb878c38f43a3ef',
-    appSecret: '8ec145d34d1849c639edb54e063a41d8',
+    appId: 'wxed73c69d3bdf1dce',
+    appSecret: 'd4624c36b6795d1d99dcf0547af5443d',
     scope: 'snapi_userinfo',
     state: 'state',
     token: 'meilaiToken',
