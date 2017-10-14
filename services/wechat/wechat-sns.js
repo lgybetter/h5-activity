@@ -15,7 +15,7 @@ const getToken = async (code) => {
   return body
 }
 const getUserInfo =async (token, openid) => {
-  const url = `${nconf.get('wechat:baseUrl')}/sns/userinfo/?access_token=${token}&openid=${openid}&lang=zh_CN`
+  const url = `${nconf.get('wechat:baseUrl')}/sns/userinfo?access_token=${token}&openid=${openid}&lang=zh_CN`
   const res = await request.getAsync({
     url,
     json: true
