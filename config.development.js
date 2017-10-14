@@ -17,6 +17,7 @@ export default {
     scope: 'snapi_userinfo',
     state: 'state',
     token: 'meilaiToken',
-    wechatDNS: 'http://119.29.193.240'
+    wechatDNS: 'http://119.29.193.240',
+    debug: true
   }
 }

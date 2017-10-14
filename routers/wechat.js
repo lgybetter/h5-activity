@@ -1,9 +1,10 @@
-import { exchangeToken } from '../controllers/wechat';
+import { exchangeToken, getJSConfig } from '../controllers/wechat';
 import nconf from 'nconf'
 const crypto = require("crypto");
 
 module.exports = (router, commonRouter, authRouter, wechatRouter) => {
   wechatRouter.post('/exchangeToken', exchangeToken);
+  wechatRouter.get('/getJSConfig', getJSConfig);
   wechatRouter.get('/', function(req, res) {
     let signature = req.query.signature,
       timestamp = req.query.timestamp,
