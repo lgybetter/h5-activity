@@ -12,6 +12,13 @@ const findUser = filter => {
   })
 }
 
+const updateUser = (filter, data) => {
+  return Users.findOneAndUpdate(filter, data).select({
+    access_token: 0,
+    refresh_token: 0
+  })
+}
+
 export {
   saveUser,
   findUser
