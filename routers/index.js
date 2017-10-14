@@ -11,6 +11,7 @@ class RouterIndex {
      */
     this._authRouter.use(vertifyToken);
     require('./qiniu-oss')(this._router, this._commonRouter, this._authRouter, this._wechatRotuer);
+    require('./wechat')(this._router, this._commonRouter, this._authRouter, this._wechatRotuer);
   }
 
   /**
