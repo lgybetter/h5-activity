@@ -1,5 +1,9 @@
+html, body {
+  height: 100%;
+}
+
 .btn {
-  width: 30px;
   height: 30px;
+  margin-bottom: 20px;
   background: greenyellow;
 }

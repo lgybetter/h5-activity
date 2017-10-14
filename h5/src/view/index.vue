@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%;">
     微信测试
     <a v-show="showToAuth" :href="authUrl" style="font-size: 20px;">跳转授权</a>
     <div class="btn" @click="startRecord">开始录音</div>
@@ -7,7 +7,6 @@
     <div class="btn" @click="playVoice">播放录音</div>
     <div class="btn" @click="pauseVoice">暂停播放</div>
     <div class="btn" @click="stopVoice">停止播放</div>
-    
   </div>
 </template>
 
@@ -24,8 +23,9 @@ export default {
       localId: ''
     }
   },
-  method: {
+  methods: {
     startRecord () {
+      console.log('start')
       wx.startRecord()
     },
     stopRecord () {
