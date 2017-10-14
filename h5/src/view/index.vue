@@ -30,7 +30,7 @@ export default {
     },
     stopRecord () {
       wx.stopRecord({
-        success: function (res) {
+        success: res => {
           this.localId = res.localId
         }
       })
