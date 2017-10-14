@@ -5,7 +5,7 @@ const getToken = (code) => {
   const url = `${nconf.get('wechat:baseUrl')}/sns/oauth2/access_token?appid=${nconf.get('wechat:appId')}&secret=${nconf.get('wechat:appSecret')}&code=${code}&grant_type=authorization_code`;
   return new Promise((resolve, reject) => {
     return request(url, (err, res, body) => {
-      if(er) {
+      if(err) {
         return reject(err)
       }
       body = JSON.parse(body)

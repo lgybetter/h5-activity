@@ -22,6 +22,7 @@ export default {
       this.showToAuth = true
     } else {
       if (!code && wechatCode) {
+        console.log(wechatCode)
         localStorage.setItem('code', wechatCode)
       }
       await axios.request({
