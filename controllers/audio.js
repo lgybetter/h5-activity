@@ -1,7 +1,7 @@
 import { getMedia } from '../services/core/audio-service'
 
 const saveMedia = async (req, res, next) => {
-  const media = req.body.mediaId
+  const mediaId = req.body.mediaId
   try {
     const res = await getMedia(mediaId)
     res.json({
