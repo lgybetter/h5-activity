@@ -1,5 +1,18 @@
-import { wechatSns } from '../wechat/index'
+import mongoose from 'mongoose'
+const Users = mongoose.model('Users')
 
+const saveUser = data => {
+  return new Users(data).save()
+}
 
+const findUser = filter => {
+  return Users.findOne(filter).select({
+    access_token: 0,
+    refresh_token: 0
+  })
+}
 
-
+export {
+  saveUser,
+  findUser
+}

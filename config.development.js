@@ -2,7 +2,7 @@ export default {
   port: 3000,
   mongodb: 'mongodb://localhost/meilai',
   host: '0.0.0.0',
-  secret: 'lgybetter',
+  secret: 'meilai',
   qiniu: {
     ACCESS_KEY: 'TQH16oTDMXh1nZgVjdBtdj-hHloZVbCawbOsamG0',
     SECRET_KEY: 'd5lswyGYlKbFMzmPLh-8drEPmkVcYXBAyzlrKSvB',
