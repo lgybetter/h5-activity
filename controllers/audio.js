@@ -17,3 +17,7 @@ const saveMedia = async (req, res, next) => {
     })    
   }
 }
+
+export {
+  saveMedia
+}
