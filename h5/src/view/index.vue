@@ -12,7 +12,7 @@ export default {
   data () {
     return {
       showToAuth: false,
-      authUrl: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxed73c69d3bdf1dce&redirect_uri=${encodeURIComponent('http://119.29.193.240')}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`
+      authUrl: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxed73c69d3bdf1dce&redirect_uri=${encodeURIComponent('http://119.29.193.240/#/')}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`
     }
   },
   async created () {
