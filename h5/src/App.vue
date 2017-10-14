@@ -10,7 +10,7 @@ import config from './config'
 import axios from 'axios'
 export default {
   name: 'app',
-  create () {
+  async create () {
     const res = await axios.request({
       url: `${config.baseUrl}/api/wechat/getJSConfig`,
       method: 'get'

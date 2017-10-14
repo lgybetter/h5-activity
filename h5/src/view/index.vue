@@ -26,29 +26,29 @@ export default {
   },
   method: {
     startRecord () {
-      wx.startRecord();
+      wx.startRecord()
     },
     stopRecord () {
       wx.stopRecord({
         success: function (res) {
-            this.localId = res.localId;
+          this.localId = res.localId
         }
       })
     },
     playVoice () {
       wx.playVoice({
         localId: this.localId // 需要播放的音频的本地ID，由stopRecord接口获得
-      });
+      })
     },
     pauseVoice () {
       wx.pauseVoice({
         localId: this.localId // 需要暂停的音频的本地ID，由stopRecord接口获得
-      });
+      })
     },
     stopVoice () {
       wx.stopVoice({
         localId: this.localId // 需要停止的音频的本地ID，由stopRecord接口获得
-      });
+      })
     }
   },
   async mounted () {
