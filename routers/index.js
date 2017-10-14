@@ -9,7 +9,7 @@ class RouterIndex {
     /**
      * 路由编写
      */
-    this._authRouter.use(vertifyToken);
+    // this._authRouter.use(vertifyToken);
     require('./qiniu-oss')(this._router, this._commonRouter, this._authRouter, this._wechatRotuer);
     require('./wechat')(this._router, this._commonRouter, this._authRouter, this._wechatRotuer);
     require('./audio')(this._router, this._commonRouter, this._authRouter, this._wechatRotuer);
