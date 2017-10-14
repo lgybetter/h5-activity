@@ -15,16 +15,12 @@ export default {
       authUrl: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxed73c69d3bdf1dce&redirect_uri=${encodeURIComponent('http://119.29.193.240/#/')}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`
     }
   },
-  async created () {
-    const code = localStorage.getItem('code')
+  async mounted () {
     const wechatCode = this.$route.query.code
-    if (!code && !wechatCode) {
+    console.log(wechatCode)
+    if (!wechatCode) {
       this.showToAuth = true
     } else {
-      if (!code && wechatCode) {
-        console.log(wechatCode)
-        localStorage.setItem('code', wechatCode)
-      }
       await axios.request({
         method: 'post',
         url: 'http://119.29.193.240/api/wechat/exchangeToken',
