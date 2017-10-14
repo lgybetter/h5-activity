@@ -7,6 +7,7 @@
     <div class="btn" @click="playVoice">播放录音</div>
     <div class="btn" @click="pauseVoice">暂停播放</div>
     <div class="btn" @click="stopVoice">停止播放</div>
+    <div class="btn" @click="uploadVoice">上传</div>
   </div>
 </template>
 
@@ -48,6 +49,22 @@ export default {
     stopVoice () {
       wx.stopVoice({
         localId: this.localId // 需要停止的音频的本地ID，由stopRecord接口获得
+      })
+    },
+    uploadVoice () {
+      wx.uploadVoice({
+        localId: this.localId,
+        isShowProgressTips: 1,
+        success: (res) => {
+          const serverId = res.serverId // 返回音频的服务器端ID
+          axios.request({
+            url: `${config.baseUrl}/api/auth/audio`,
+            method: 'post',
+            data: {
+              mediaId: serverId
+            }
+          })
+        }
       })
     }
   },
