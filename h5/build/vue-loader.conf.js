@@ -10,6 +10,12 @@ module.exports = {
       : config.dev.cssSourceMap,
     extract: isProduction
   }),
+  postcss: [
+    require('postcss-px2rem')({remUnit: 72}),
+    require('autoprefixer')({
+      browsers: ['last 2 versions']
+    })
+  ],
   transformToRequire: {
     video: 'src',
     source: 'src',

@@ -68,3 +68,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.btn {
+  font-size: 15px;
+  height: 50px;
+  margin-bottom: 20px;
+  background: greenyellow;
+}
+</style>
