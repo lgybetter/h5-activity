@@ -13,7 +13,7 @@ export default {
     const code = localStorage.getItem('code')
     const wechatCode = this.$route.query.code
     if (!code && !wechatCode) {
-      window.open(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8bb878c38f43a3ef&redirect_uri=${encodeURIComponent('http://119.29.193.240/#/')}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`)
+      window.open(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxed73c69d3bdf1dce&redirect_uri=${encodeURIComponent('http://119.29.193.240')}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`)
     } else {
       if (!code && wechatCode) {
         localStorage.setItem('code', wechatCode)

@@ -18,7 +18,7 @@ const getToken = (code) => {
 }
 const getUserInfo =(token, openid) => {
   return new Promise((resolve, reject) => {
-    const url = `${nconf.get('wechat:baseUrl')}/sns/userinfo/?access_token=${token}&openid=${openid}`
+    const url = `${nconf.get('wechat:baseUrl')}/sns/userinfo/?access_token=${token}&openid=${openid}&lang=zh_CN`
     return request(url, (err, res, body) => {
       if(err) {
         return reject(err)
