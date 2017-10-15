@@ -14,7 +14,8 @@ const ChorusSchema = new Schema({
   audioId: [{
     type: Schema.Types.ObjectId, ref: 'Audio'
   }],
-  createAt: { type: Date, default: Date.now }
+  createAt: { type: Date, default: Date.now },
+  updateAt: { type: Date, default: Date.now }
 })
 
 export default mongoose.model('Chorus', ChorusSchema)
