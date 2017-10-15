@@ -4,9 +4,11 @@ import Path from 'path'
 import ffmpeg from 'fluent-ffmpeg'
 import cp from 'child_process'
 
-const removeAudioFile = (name, type) => {
-  const path = Path.resolve(__dirname, '../../tempFiles')
+const removeAudioFile = (name, path = Path.resolve(__dirname, '../../tempFiles'), type) => {
   return new Promise((resolve, reject) => {
+    if(name = '/') {
+      return reject(new Error('删除操作有误'))
+    }
     cp.exec(`rm -f ${path}/${name}.${type}`, err => {
       if(err) {
         return reject(err)
@@ -85,8 +87,8 @@ const getMedia = mediaId => {
       // 删除amr文件
       await removeAudioFile(mediaId, 'amr')
       return resolve({
-        data: result,
-        res
+        name: formatFile.name,
+        path: formatFile.path
       })
     })
   })
@@ -95,5 +97,6 @@ export {
   getMedia,
   mergeAudio,
   changeMedia,
+  removeAudioFile,
   changeAudioFormat
 }

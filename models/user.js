@@ -14,7 +14,8 @@ const UserSchema = new Schema({
   headimgurl: String,
   privilege: Array,
   access_token: String,
-  refresh_token: String
+  refresh_token: String,
+  createAt: { type: Date, default: Date.now }
 })
 
 export default mongoose.model('Users', UserSchema)
