@@ -7,8 +7,11 @@ const getMedia = mediaId => {
         console.log(err)
         return reject(err)
       }
-      console.log(res)
-      return Promise.resolve(res)
+      console.log(res, 'media')
+      return resolve({
+        data,
+        res
+      })
     })
   })
 }
