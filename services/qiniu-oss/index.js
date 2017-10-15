@@ -27,6 +27,11 @@ const getUptoken = (req, res, next) => {
   }
 }
 
+/**
+ * 上传文件到七牛云
+ * @param {文件夹路径} dir 
+ * @param {文件名} fileName 
+ */
 const uploadToQiniu = (dir, fileName) => {
   let uploadToken = putPolicy.uploadToken(mac)
   let config = new qiniu.conf.Config()
@@ -51,6 +56,7 @@ const uploadToQiniu = (dir, fileName) => {
   })
 }
 
-export default {
-  getUptoken
+export {
+  getUptoken,
+  uploadToQiniu
 }
