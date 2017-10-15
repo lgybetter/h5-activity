@@ -26,6 +26,19 @@ export default {
       // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
       console.log('wx jsapi err:', res)
     })
+    wx.onMenuShareTimeline({
+      title: '美莱周年庆', // 分享标题
+      link: `${config.redirectUrl}?type=share`, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: 'http://os32fgzvj.bkt.clouddn.com/012489fbdca023b5de1f5ddb41e15f61-head-picture.jpg', // 分享图标
+      success: () => {
+        console.log('分享成功')
+        // 用户确认分享后执行的回调函数
+      },
+      cancel: () => {
+        console.log('分享失败')
+        // 用户取消分享后执行的回调函数
+      }
+    })
     wx.onMenuShareAppMessage({
       title: '美莱周年庆', // 分享标题
       desc: '唱歌', // 分享描述
