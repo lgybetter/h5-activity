@@ -87,6 +87,7 @@ const exchangeToken = async (req, res, next) => {
       code: 200,
       msg: '微信登录成功',
       data: {
+        openid,
         token
       }
     })

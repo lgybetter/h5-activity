@@ -70,17 +70,26 @@ export default {
   },
   async mounted () {
     const wechatCode = this.$route.query.code
-    console.log(wechatCode)
-    if (!wechatCode) {
+    const saveOpenId = localStorage.getItem('openId')
+    if (!saveOpenId && !wechatCode) {
       this.showToAuth = true
-    } else {
-      await axios.request({
-        method: 'post',
-        url: `${config.baseUrl}/api/wechat/exchangeToken`,
-        data: {
-          code: wechatCode
+    } else if (wechatCode && !saveOpenId) {
+      try {
+        const res = await axios.request({
+          method: 'post',
+          url: `${config.baseUrl}/api/wechat/exchangeToken`,
+          data: {
+            code: wechatCode
+          }
+        })
+        if (res.data.data.code === 200) {
+          localStorage.setItem('openId', res.data.data.openId)
+        } else {
+          console.log('验证出错')
         }
-      })
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }
