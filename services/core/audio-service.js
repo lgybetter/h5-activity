@@ -9,7 +9,7 @@ const getMedia = mediaId => {
       }
       console.log(res, 'media')
       return resolve({
-        data,
+        data: result,
         res
       })
     })
