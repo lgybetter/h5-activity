@@ -4,7 +4,7 @@ import Path from 'path'
 import ffmpeg from 'fluent-ffmpeg'
 import cp from 'child_process'
 
-const changeAudioFormat = ({ name, type = '.amr',  path = Path.resolve(__dirname, '../../tempFiles'), output = Path.resolve(__dirname, '../../tempFiles') }) => {
+const changeAudioFormat = ({ name, path = Path.resolve(__dirname, '../../tempFiles'), output = Path.resolve(__dirname, '../../tempFiles'), type = '.amr' }) => {
   return new Promise((resolve, reject) => {
     const command = ffmpeg(`${path}/${name}${type}`)
       .on('end', () => {
@@ -55,6 +55,9 @@ const getMedia = mediaId => {
         return reject(err)
       }
       const file = await changeMedia(result, { name: mediaId }) 
+      const formatFile = await changeAudioFormat({
+        name: file.name,
+      })
       return resolve({
         data: result,
         res
