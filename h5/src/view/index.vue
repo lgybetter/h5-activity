@@ -70,7 +70,7 @@ export default {
   },
   async mounted () {
     const wechatCode = this.$route.query.code
-    const saveOpenId = window.localStorage.getItem('openId')
+    const saveOpenId = window.localStorage.getItem('openid')
     console.log(saveOpenId, 'localstorage')
     if (!saveOpenId && !wechatCode) {
       this.showToAuth = true
@@ -85,7 +85,7 @@ export default {
           }
         })
         console.log(res)
-        window.localStorage.setItem('openId', res.data.data.openid)
+        window.localStorage.setItem('openid', res.data.data.openid)
       } catch (error) {
         console.log(error)
       }
