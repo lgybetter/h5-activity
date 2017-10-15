@@ -84,11 +84,7 @@ export default {
             code: wechatCode
           }
         })
-        if (res.data.code === 200) {
-          window.localStorage.setItem('openId', res.data.data.openId)
-        } else {
-          console.log('验证出错')
-        }
+        window.localStorage.setItem('openId', res.data.data.openId)
       } catch (error) {
         console.log(error)
       }
