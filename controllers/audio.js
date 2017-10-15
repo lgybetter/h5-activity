@@ -1,5 +1,5 @@
-import { getMedia, changeMedia, changeAudioFormat } from '../services/core/audio-service'
-
+import { getMedia, changeMedia, changeAudioFormat, mergeAudio, removeAudioFile } from '../services/core/audio-service'
+import Path from 'path'
 const saveMedia = async (req, res, next) => {
   // 当前的音频
   const mediaId = req.body.mediaId
@@ -11,8 +11,16 @@ const saveMedia = async (req, res, next) => {
     const path = mp3.path
     const name = mp3.name
     if (preMedia) {
-      // 需要合并音频
+      // 需要合并音频,先下载七牛云对应的音频，然后合并本地文件
     }
+    // 上传本地文件到七牛云
+
+    // 删除本地文件
+    await removeAudioFile({
+      name,
+      path: Path.resolve(__dirname, '../tempFiles'),
+      type: 'mp3'
+    })
     res.json({
       code: 200,
       data: {
