@@ -2,9 +2,10 @@ import { wechatAPI } from '../../services/wechat/wechat-api'
 import fs from 'fs'
 import Path from 'path'
 
-const changeMedia = (buffer, { name = '', type = '.amr' }) => {
+const changeMedia = (buffer, { path = Path.resolve(__dirname, '../../tempFiles'), name = '', type = '.amr' }) => {
+  console.log(path)
   return new Promise((resolve, reject) => {
-    fs.writeFile(`${Path.join(__dirname, 'tempFiles', name + type)}`, buffer, (err) => {
+    fs.writeFile(`${path}/${name}${type}`, buffer, (err) => {
       if(err) {
         return reject(err)
       }
