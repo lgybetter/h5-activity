@@ -70,7 +70,7 @@ export default {
   },
   async mounted () {
     const wechatCode = this.$route.query.code
-    const saveOpenId = localStorage.getItem('openId')
+    const saveOpenId = window.localStorage.getItem('openId')
     if (!saveOpenId && !wechatCode) {
       this.showToAuth = true
     } else if (wechatCode && !saveOpenId) {
@@ -83,7 +83,7 @@ export default {
           }
         })
         if (res.data.data.code === 200) {
-          localStorage.setItem('openId', res.data.data.openId)
+          window.localStorage.setItem('openId', res.data.data.openId)
         } else {
           console.log('验证出错')
         }
