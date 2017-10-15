@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon index.js --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd h5 && npm run build"
+    "build": "cd h5 && npm run build",
+    "dev": "cd h5 && npm run dev"
   },
   "keywords": [
     "meilai"

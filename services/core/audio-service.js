@@ -4,6 +4,21 @@ import Path from 'path'
 import ffmpeg from 'fluent-ffmpeg'
 import cp from 'child_process'
 
+const removeAudioFile = (name, type) => {
+  const path = Path.resolve(__dirname, '../../tempFiles')
+  return new Promise((resolve, reject) => {
+    cp.exec(`rm -f ${path}/${name}.${type}`, err => {
+      if(err) {
+        return reject(err)
+      }
+      return resolve('success')
+    })
+  })
+}
+
+/**
+ * 转换arm音频格式为mp3
+ */
 const changeAudioFormat = ({ name, path = Path.resolve(__dirname, '../../tempFiles'), output = Path.resolve(__dirname, '../../tempFiles'), type = '.amr' }) => {
   return new Promise((resolve, reject) => {
     const command = ffmpeg(`${path}/${name}${type}`)
@@ -22,6 +37,9 @@ const changeAudioFormat = ({ name, path = Path.resolve(__dirname, '../../tempFil
   })
 }
 
+/**
+ * 合并mp3音频
+ */
 const mergeAudio = (audio1, audio2, output = '') => {
   return new Promise((resolve, reject) => {
     cp.exec(`ffmpeg -i "concat:${audio1}|${audio2}" -acodec copy ${output}`, (err) => {
@@ -33,6 +51,9 @@ const mergeAudio = (audio1, audio2, output = '') => {
   })
 }
 
+/**
+ * 把微信获取到的buffer转换为amr文件
+ */
 const changeMedia = (buffer, { path = Path.resolve(__dirname, '../../tempFiles'), name = '', type = '.amr' }) => {
   return new Promise((resolve, reject) => {
     fs.writeFile(`${path}/${name}${type}`, buffer, (err) => {
@@ -48,6 +69,9 @@ const changeMedia = (buffer, { path = Path.resolve(__dirname, '../../tempFiles')
   })
 }
 
+/**
+ * 微信获取音频数据
+ */
 const getMedia = mediaId => {
   return new Promise((resolve, reject) => {
     wechatAPI.getMedia(mediaId, async (err, result, res) => {
@@ -58,6 +82,8 @@ const getMedia = mediaId => {
       const formatFile = await changeAudioFormat({
         name: file.name,
       })
+      // 删除amr文件
+      await removeAudioFile(mediaId, 'amr')
       return resolve({
         data: result,
         res
@@ -67,5 +93,7 @@ const getMedia = mediaId => {
 }
 export {
   getMedia,
-  changeMedia
+  mergeAudio,
+  changeMedia,
+  changeAudioFormat
 }
