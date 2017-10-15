@@ -4,7 +4,7 @@ import Path from 'path'
 
 const changeMedia = (buffer, { name = '', type = '.amr' }) => {
   return new Promise((resolve, reject) => {
-    fs.write(`${Path.join(__dirname, 'tempFiles', name + type)}`, buffer, (err) => {
+    fs.writeFile(`${Path.join(__dirname, 'tempFiles', name + type)}`, buffer, (err) => {
       if(err) {
         return reject(err)
       }
