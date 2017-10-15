@@ -85,7 +85,7 @@ export default {
           }
         })
         console.log(res)
-        window.localStorage.setItem('openId', res.data.data.openId)
+        window.localStorage.setItem('openId', res.data.data.openid)
       } catch (error) {
         console.log(error)
       }
