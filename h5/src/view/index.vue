@@ -71,9 +71,11 @@ export default {
   async mounted () {
     const wechatCode = this.$route.query.code
     const saveOpenId = window.localStorage.getItem('openId')
+    console.log(saveOpenId, 'localstorage')
     if (!saveOpenId && !wechatCode) {
       this.showToAuth = true
     } else if (wechatCode && !saveOpenId) {
+      this.showToAuth = false
       try {
         const res = await axios.request({
           method: 'post',
@@ -90,6 +92,8 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    } else {
+      this.showToAuth = false
     }
   }
 }
