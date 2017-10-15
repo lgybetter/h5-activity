@@ -87,8 +87,8 @@ const getMedia = mediaId => {
       // 删除amr文件
       await removeAudioFile(mediaId, 'amr')
       return resolve({
-        data: result,
-        res
+        name: formatFile.name,
+        path: formatFile.path
       })
     })
   })
