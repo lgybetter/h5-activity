@@ -1,12 +1,13 @@
 <template>
   <div style="height: 100%;">
-    微信测试
+    微信测试 {{showText}}
     <a v-show="showToAuth" :href="authUrl" style="font-size: 20px;">跳转授权</a>
     <div class="btn" @click="startRecord">开始录音</div>
     <div class="btn" @click="stopRecord">停止录音</div>
     <div class="btn" @click="playVoice">播放录音</div>
     <div class="btn" @click="pauseVoice">暂停播放</div>
     <div class="btn" @click="stopVoice">停止播放</div>
+    <div class="btn" @click="translateVoice">识别语音</div>
     <div class="btn" @click="uploadVoice">上传</div>
   </div>
 </template>
@@ -21,12 +22,20 @@ export default {
     return {
       showToAuth: false,
       authUrl: `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${config.appId}&redirect_uri=${encodeURIComponent(config.redirectUrl)}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect`,
-      localId: ''
+      localId: '',
+      showText: ''
     }
   },
   methods: {
+    translateVoice () {
+      wx.translateVoice({
+        localId: this.localId, // 需要识别的音频的本地Id，由录音相关接口获得
+        success: res => {
+          this.showText = res.translateResult // 语音识别的结果
+        }
+      })
+    },
     startRecord () {
-      console.log('start')
       wx.startRecord()
     },
     stopRecord () {
@@ -71,7 +80,6 @@ export default {
   async mounted () {
     const wechatCode = this.$route.query.code
     const saveOpenId = window.localStorage.getItem('openid')
-    console.log(saveOpenId, 'localstorage')
     if (!saveOpenId && !wechatCode) {
       this.showToAuth = true
     } else if (wechatCode && !saveOpenId) {
@@ -84,10 +92,8 @@ export default {
             code: wechatCode
           }
         })
-        console.log(res)
         window.localStorage.setItem('openid', res.data.data.openid)
       } catch (error) {
-        console.log(error)
       }
     } else {
       this.showToAuth = false

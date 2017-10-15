@@ -8,7 +8,6 @@ const ChorusSchema = new Schema({
   url: String,
   name: String,
   createBy: { type: Schema.Types.ObjectId, ref: 'Users' },
-  status: Number, // 0: 重新开始录制歌曲，当前记录只呈现　1: 未录制新的歌曲
   users: [{
     type: Schema.Types.ObjectId, ref: 'Users'
   }],
