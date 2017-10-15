@@ -38,6 +38,9 @@ export default {
     },
     startRecord () {
       wx.startRecord()
+      setTimeout(() => {
+        this.stopRecord()
+      }, 5000)
     },
     stopRecord () {
       wx.stopRecord({
