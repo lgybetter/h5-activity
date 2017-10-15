@@ -84,6 +84,7 @@ export default {
             code: wechatCode
           }
         })
+        console.log(res)
         window.localStorage.setItem('openId', res.data.data.openId)
       } catch (error) {
         console.log(error)
