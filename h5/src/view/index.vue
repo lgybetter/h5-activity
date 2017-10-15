@@ -30,6 +30,7 @@ export default {
     translateVoice () {
       wx.translateVoice({
         localId: this.localId, // 需要识别的音频的本地Id，由录音相关接口获得
+        isShowProgressTips: 0,
         success: res => {
           this.showText = res.translateResult // 语音识别的结果
         }
@@ -63,7 +64,7 @@ export default {
     uploadVoice () {
       wx.uploadVoice({
         localId: this.localId,
-        isShowProgressTips: 1,
+        isShowProgressTips: 0,
         success: (res) => {
           const serverId = res.serverId // 返回音频的服务器端ID
           axios.request({
